@@ -9,6 +9,9 @@ class ProdAppConfig implements AppConfig {
 
   @override
   String get host => Environment.prod;
+
+  @override
+  int get port => 443;
 }
 
 @Singleton(as: AppConfig)
@@ -19,6 +22,9 @@ class DevAppConfig implements AppConfig {
 
   @override
   String get host => Environment.dev;
+
+  @override
+  int get port => 443;
 }
 
 @Singleton(as: AppConfig)
@@ -29,4 +35,7 @@ class TestAppConfig implements AppConfig {
 
   @override
   String get host => Environment.test;
+
+  @override
+  int get port => 443;
 }
