@@ -1,3 +1,5 @@
+import 'package:client_it/app/ui/components/app_text_button.dart';
+import 'package:client_it/app/ui/components/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,44 +23,36 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
-                  validator: emptyValidator,
-                  maxLines: 1,
-                  controller: controllerLogin,
-                  decoration: const InputDecoration(
-                      labelText: "Login", border: OutlineInputBorder()),
+                AppTextField(controller: controllerLogin, labelText: "Login"),
+                const SizedBox(height: 16),
+                AppTextField(
+                    controller: controllerPassword,
+                    labelText: "Password",
+                    obscureText: true),
+                const SizedBox(height: 16),
+                AppTextButton(
+                  onPressed: () {
+                    if (formKey.currentState?.validate() == true) {
+                      print("OK");
+                    }
+                  },
+                  text: 'Sign In',
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  validator: emptyValidator,
-                  maxLines: 1,
-                  controller: controllerPassword,
-                  decoration: const InputDecoration(
-                      labelText: "Password", border: OutlineInputBorder()),
+                AppTextButton(
+                  backgroundColor: Colors.blueGrey,
+                  onPressed: () {
+                    if (formKey.currentState?.validate() == true) {
+                      print("OK");
+                    }
+                  },
+                  text: 'Sign Up',
                 ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState?.validate() == true) {
-                        print("OK");
-                      }
-                    },
-                    style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all<Size>(
-                            const Size(double.maxFinite, 40))),
-                    child: const Text("SignIn")),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  String? emptyValidator(String? text) {
-    if (text?.isEmpty == true) {
-      return "Field is empty";
-    }
-    return null;
   }
 }
