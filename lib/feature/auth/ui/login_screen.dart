@@ -1,6 +1,8 @@
 import 'package:client_it/app/ui/components/app_text_button.dart';
 import 'package:client_it/app/ui/components/app_text_field.dart';
+import 'package:client_it/feature/auth/domain/auth_state/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   final controllerLogin = TextEditingController();
@@ -33,7 +35,7 @@ class LoginScreen extends StatelessWidget {
                 AppTextButton(
                   onPressed: () {
                     if (formKey.currentState?.validate() == true) {
-                      print("OK");
+                      _onSignInPressed(context.read<AuthCubit>());
                     }
                   },
                   text: 'Sign In',
@@ -55,4 +57,7 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _onSignInPressed(AuthCubit authCubit) => authCubit.signIn(
+      email: controllerLogin.text, password: controllerPassword.text);
 }

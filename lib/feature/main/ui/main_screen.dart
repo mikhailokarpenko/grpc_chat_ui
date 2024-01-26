@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
         title: const Text("MainScreen"),
       ),
       body: Center(
-        child: Text(userEntity.username),
+        child: Text(userEntity.email),
       ),
     );
   }

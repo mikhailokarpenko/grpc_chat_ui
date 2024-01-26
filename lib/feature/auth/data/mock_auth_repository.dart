@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:client_it/feature/auth/domain/auth_repository.dart';
 import 'package:client_it/feature/auth/domain/entities/user_entity/user_entity.dart';
 import 'package:injectable/injectable.dart';
@@ -26,13 +28,14 @@ class MockAuthRepository implements AuthRepository {
 
   @override
   Future signIn({required String password, required String email}) {
-    return Future.delayed(const Duration(seconds: 2), () {
-      return UserEntity(
-        email: email,
-        username: "testUsername",
-        id: "-1",
-      );
-    });
+    throw Exception("Test");
+    // return Future.delayed(const Duration(seconds: 2), () {
+    //   return UserEntity(
+    //     email: email,
+    //     username: "testUsername",
+    //     id: "-1",
+    //   );
+    // });
   }
 
   @override

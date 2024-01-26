@@ -26,25 +26,25 @@ class AuthBuilder extends StatelessWidget {
         );
       },
       listenWhen: ((previous, current) =>
-      previous.mapOrNull(
-        error: (value) => value,
-      ) != current.mapOrNull(
-        error: (value) => value,
-      )),
+          previous.mapOrNull(
+            error: (value) => value,
+          ) !=
+          current.mapOrNull(
+            error: (value) => value,
+          )),
       listener: (context, state) {
         state.whenOrNull(
-          error: (error) => _showSnackbar,
+          error: (error) => _showSnackbar(context, error),
         );
       },
     );
   }
 
   void _showSnackbar(BuildContext context, dynamic error) {
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            duration: Duration(seconds: 5),
-            content: SingleChildScrollView(
-              child: Text(maxLines: 5, error.toString()),
-            )));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: Duration(seconds: 5),
+        content: SingleChildScrollView(
+          child: Text(maxLines: 5, error.toString()),
+        )));
   }
 }
